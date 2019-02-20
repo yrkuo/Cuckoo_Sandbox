@@ -149,5 +149,6 @@ agent.py配置:
 ```
 ## 參考文件
 ```
-[Cuckoo Installation](https://0x90e.github.io/cuckoo-installation/)
+[Cuckoo Installation][]
+[Cuckoo Installation]:https://0x90e.github.io/cuckoo-installation/
 ```
