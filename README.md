@@ -108,5 +108,15 @@ agent.py配置:
       [USER]是指Windows user名稱
       例如: C:\Users\analyzer\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup
       AppData爲隱藏目錄，記得打開顯示隱藏目錄的Windows選項
++ 配置系統開機自動登入
+  + 使用Administrator權限啓動cmd，並依序在cmd中輸入以下指令
+  + [USERNAME]與[PASSWORD]需替換爲登入的Windows user與對應的password
+  ```bash
+  $ reg add "hklm\software\Miscrosoft\Windows NT\CurrentVersion\WinLogon" /v DefaultUserName /d <USERNAME> /t REG_SZ /f
+  $ reg add "hklm\software\Miscrosoft\Windows NT\CurrentVersion\WinLogon" /v DefaultPassword /d <PASSWORD> /t REG_SZ /f
+  $ reg add "hklm\software\Miscrosoft\Windows NT\CurrentVersion\WinLogon" /v AutoAdminLogon /d 1 /t REG_SZ /f
+  $ reg add "hklm\system\CurrentControlSet\Control\TerminalServer" /v AllowRemoteRPC /d 0x01 /t REG_DWORD /f
+  $ reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v LocalAccountTokenFilterPolicy /d 0x01 /t REG_DWORD /f
+  ```
 ```
 
