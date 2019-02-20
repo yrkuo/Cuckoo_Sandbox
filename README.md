@@ -18,25 +18,25 @@ $ sudo apt-get install libjpeg-dev zlib1g-dev swig
 ```
 ## install tcpdump
 ```bash
-$sudo setcap cap_net_raw,cap_net_admin=eip /usr/sbin/tcpdump
-$getcap /usr/sbin/tcpdump
+$ sudo setcap cap_net_raw,cap_net_admin=eip /usr/sbin/tcpdump
+$ getcap /usr/sbin/tcpdump
 /usr/sbin/tcpdump = cap_net_admin,cap_net_raw+eip
 ```
 ## install Pydeep
 ```bash
-$wget http://sourceforge.net/projects/ssdeep/files/ssdeep-2.13/ssdeep-2.13.tar.gz/download
-$mv dowonload download.tar.gz
-$tar -zxf download.tar.gz
-$cd ssdeep-2.13
-$./configure
-$make
-$sudo make install
-#確認安裝無誤
-$ssdeep -V(大寫) 
+$ wget http://sourceforge.net/projects/ssdeep/files/ssdeep-2.13/ssdeep-2.13.tar.gz/download
+$ mv dowonload download.tar.gz
+$ tar -zxf download.tar.gz
+$ cd ssdeep-2.13
+$ ./configure
+$ make
+$ sudo make install
+# 確認安裝無誤
+$ ssdeep -V(大寫) 
 2.13
 
-$sudo pip install pydeep
-$sudo pip show pydeep
+$ sudo pip install pydeep
+$ sudo pip show pydeep
 ---
 Name: pydeep
 Version: 0.4 
@@ -47,4 +47,35 @@ Author-email: [email protected]
 License: BSD 
 Location: /usr/local/lib/python2.7/dist-packages
 Requires: 
+```
+## install Volatility
+```bash
+# 安裝前置套件
+$ sudo pip install openpyxl
+$ sudo pip install ujson
+$ sudo pip install pycrypto
+$ sudo pip install distorm3
+$ sudo pip install pytz
+
+$ git clone https://github.com/volatilityfoundation/volatility.git
+$ cd volatility
+$ python setup.py build
+$ python setup.py install
+# 確認安裝無誤
+$ python vol.py -h
+```
+## install M2Crypto
+```bash
+$ sudo pip install m2crypto==0.24.0(官方)
+$ sudo apt-get install python-m2crypto(自身)
+```
+## install Cuckoo
+```bash
+$ pip install cuckoo
+```
+## install VituralBox
+```bash
+$sudo apt-get install virtualbox
+#執行virtualbox
+$virtualbox
 ```
