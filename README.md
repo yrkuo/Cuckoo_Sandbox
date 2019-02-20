@@ -75,7 +75,38 @@ $ pip install cuckoo
 ```
 ## install VituralBox
 ```bash
-$sudo apt-get install virtualbox
-#執行virtualbox
-$virtualbox
+$ sudo apt-get install virtualbox
+# 執行virtualbox
+$ virtualbox
 ```
+## Guest配置
+```
+創建一虛擬機器，作業系統為win7。
+網路配置：
+* 檔案->主機網路管理員->建立vboxnet(host-only)(不使用DHCP，值為預設)
+* (Guest虛擬機)設定值->網路->將NAT改成Host-only介面卡(vboxnet)
+* 開啟Guest虛擬機->手動設定IP
+  * ip      : 192.168.56.101
+  * mask    : 255.255.255.0
+  * gateway : 192.168.56.1
+  * dns     : 8.8.8.8
+  
+環境配置：
+* 安裝python 2.7.15rc
+* 安裝Pillow(pip install Pillow)
+* 安裝PDF readers，Office，Adobe Flash，瀏覽器等可能觸發惡意樣本行爲的軟體
+* 關閉自動更新
+* 關閉防火牆
+* 關閉UAC
+
+agent.py配置:
++ 將Cuckoo的agent.py設定爲開機自啓動
+  + 該文件原始位置在Host OS的CWD子目錄中，預設在~/.cuckoo/agent/agent.py(在host端先執行一次`$cuckoo`，失敗沒關係，目的在產生.cuckoo資料夾)
+  + 複製並將agent.py檔名修改爲agent.pyw，避免啓動時的執行視窗
+  + 將agent.pyw移入Guest OS的下列指定目錄內
+    + C:\Users[USER]\AppData\Roaming\MicroSoft\Windows\Start Menu\Programs\Startup\
+      [USER]是指Windows user名稱
+      例如: C:\Users\analyzer\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup
+      AppData爲隱藏目錄，記得打開顯示隱藏目錄的Windows選項
+```
+
