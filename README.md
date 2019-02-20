@@ -69,6 +69,30 @@ $ python vol.py -h
 $ sudo pip install m2crypto==0.24.0(官方)
 $ sudo apt-get install python-m2crypto(自身)
 ```
+## Network Configuration
+```bash
+# 建立IP轉發
+$ sudo vim /etc/sysctl.conf
+  將底下這段的註解取消
+  # Uncomment the next line to enable packet forwarding for IPv4
+  net.ipv4.ip_forward=1
+
+# 建立iptables
+$ sudo iptables -t nat -A POSTROUTING -o eth0 -s 192.168.56.0/24 -j MASQUERADE
+# Default drop.
+$ sudo iptables -P FORWARD DROP
+# Existing connections.
+$ sudo iptables -A FORWARD -m state --state RELATED,ESTABLISHED -j ACCEPT
+# Accept connections from vboxnet to the whole internet.
+$ sudo iptables -A FORWARD -s 192.168.56.0/24 -j ACCEPT
+# Internal traffic.
+$ sudo iptables -A FORWARD -s 192.168.56.0/24 -d 192.168.56.0/24 -j ACCEPT
+# Log stuff that reaches this point (could be noisy).
+$ sudo iptables -A FORWARD -j LOG
+
+# 更改網卡名稱(不確定)
+在原先的設定下,網卡名稱是以eno1表示,但傳統是以eth0表示,在未改名稱前,會有虛擬機可連外網但host無法連的狀況
+```
 ## install Cuckoo
 ```bash
 $ pip install cuckoo
@@ -119,4 +143,11 @@ agent.py配置:
   $ reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v LocalAccountTokenFilterPolicy /d 0x01 /t REG_DWORD /f
   ===
 ```
-
+## Cuckoo配置
+```
+參考連結1
+```
+## 參考文件
+```
+[Cuckoo Installation](https://0x90e.github.io/cuckoo-installation/)
+```
