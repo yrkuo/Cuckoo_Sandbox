@@ -149,4 +149,6 @@ agent.py配置:
 ```
 ## 參考文件
 [Cuckoo Installation](https://0x90e.github.io/cuckoo-installation/)
+[官方文件](https://cuckoo.sh/docs/installation/index.html)
+[Cuckoo SandBox V2.0.6安裝指南](https://www.itread01.com/content/1542834127.html)
 
