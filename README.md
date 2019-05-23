@@ -11,7 +11,7 @@ Record how to install Cuckoo Sandbox
 ```
 ## 安裝套件
 ```bash
-$ sudo apt-get install git mongodb libffi-dev build-essential python-django python python-dev python-pip python-pil python-sqlalchemy python-bson python-dpkt python-jinja2 python-magic python -pymongo python-gridfs python-libvirt python-bottle python-pefile python-chardet tcpdump
+$ sudo apt-get install git mongodb libffi-dev build-essential python-django python-pil python-sqlalchemy python-bson python-dpkt python-jinja2 python-magic -pymongo python-gridfs python-libvirt python-bottle python-pefile python-chardet tcpdump
 $ sudo apt-get install python python-pip python-dev libffi-dev libssl-dev
 $ sudo apt-get install python-virtualenv python-setuptools
 $ sudo apt-get install libjpeg-dev zlib1g-dev swig
