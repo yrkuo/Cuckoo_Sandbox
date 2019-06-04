@@ -11,10 +11,26 @@ Record how to install Cuckoo Sandbox
 ```
 ## 安裝套件
 ```bash
-$ sudo apt-get install mongodb build-essential python-django python-pil python-sqlalchemy python-bson python-dpkt python-jinja2 python-magic -pymongo python-gridfs python-libvirt python-bottle python-pefile python-chardet tcpdump
+$ sudo apt-get install python-sqlalchemy python-bson python-dpkt python-bottle python-jinja2 python-magic python-pymongo python-gridfs build-essential python-django python-pil python-pefile python-chardet
 $ sudo apt-get install python python-pip python-dev libffi-dev libssl-dev
 $ sudo apt-get install python-virtualenv python-setuptools
 $ sudo apt-get install libjpeg-dev zlib1g-dev swig
+
+$ sudo apt-get install mongodb
+
+$ sudo apt-get install postgresql libpq-dev
+```
+## install YARA
+```bash
+$ wget https://github.com/VirusTotal/yara/archive/v3.10.0.tar.gz
+$ tar -zxf v3.10.0.tar.gz
+$ cd yara-3.10.0
+$ sudo apt-get install libtool
+$ sudo apt-get install automake
+$ ./bootstrap.sh
+$ ./configure
+$ make
+$ sudo make install
 ```
 ## install tcpdump
 ```bash
