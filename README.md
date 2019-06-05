@@ -22,21 +22,28 @@ $ sudo apt-get install postgresql libpq-dev
 ```
 ## install YARA
 ```bash
+$ sudo apt-get install libtool automake libmagic-dev
 $ wget https://github.com/VirusTotal/yara/archive/v3.10.0.tar.gz
 $ tar -zxf v3.10.0.tar.gz
 $ cd yara-3.10.0
-$ sudo apt-get install libtool
-$ sudo apt-get install automake
 $ ./bootstrap.sh
 $ ./configure
 $ make
 $ sudo make install
+#啟用模組
+$ ./configure --enable-cuckoo
+$ ./configure --enable-magic
 ```
 ## install tcpdump
 ```bash
+$ sudo apt-get install tcpdumpd
+# 權限設定
 $ sudo setcap cap_net_raw,cap_net_admin=eip /usr/sbin/tcpdump
+# 確認設定
 $ getcap /usr/sbin/tcpdump
 /usr/sbin/tcpdump = cap_net_admin,cap_net_raw+eip
+# 如果沒有setcap套件
+$ sudo apt-get install libcap2-bin
 ```
 ## install Pydeep
 ```bash
@@ -108,6 +115,10 @@ $ sudo iptables -A FORWARD -j LOG
 
 # 更改網卡名稱(不確定)
 在原先的設定下,網卡名稱是以eno1表示,但傳統是以eth0表示,在未改名稱前,會有虛擬機可連外網但host無法連的狀況
+$ sudo vim /etc/default/grub
+GRUB_CMDLINE_LINUX="net.ifnames=0 biosdevname=0"
+$ sudo grub-mkconfig -o /boot/grub/grub.cfg
+$ restart(重啟系統)
 ```
 ## install Cuckoo
 ```bash
@@ -152,9 +163,9 @@ agent.py配置:
   + 使用Administrator權限啓動cmd，並依序在cmd中輸入以下指令
   + [USERNAME]與[PASSWORD]需替換爲登入的Windows user與對應的password
   ===
-  $ reg add "hklm\software\Miscrosoft\Windows NT\CurrentVersion\WinLogon" /v DefaultUserName /d <USERNAME> /t REG_SZ /f
-  $ reg add "hklm\software\Miscrosoft\Windows NT\CurrentVersion\WinLogon" /v DefaultPassword /d <PASSWORD> /t REG_SZ /f
-  $ reg add "hklm\software\Miscrosoft\Windows NT\CurrentVersion\WinLogon" /v AutoAdminLogon /d 1 /t REG_SZ /f
+  $ reg add "hklm\software\Microsoft\Windows NT\CurrentVersion\WinLogon" /v DefaultUserName /d <USERNAME> /t REG_SZ /f
+  $ reg add "hklm\software\Microsoft\Windows NT\CurrentVersion\WinLogon" /v DefaultPassword /d <PASSWORD> /t REG_SZ /f
+  $ reg add "hklm\software\Microsoft\Windows NT\CurrentVersion\WinLogon" /v AutoAdminLogon /d 1 /t REG_SZ /f
   $ reg add "hklm\system\CurrentControlSet\Control\TerminalServer" /v AllowRemoteRPC /d 0x01 /t REG_DWORD /f
   $ reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v LocalAccountTokenFilterPolicy /d 0x01 /t REG_DWORD /f
   ===
@@ -165,6 +176,8 @@ agent.py配置:
 ```
 ## 參考文件
 [Cuckoo Installation](https://0x90e.github.io/cuckoo-installation/)
+
 [官方文件](https://cuckoo.sh/docs/installation/index.html)
+
 [Cuckoo SandBox V2.0.6安裝指南](https://www.itread01.com/content/1542834127.html)
 
