@@ -172,10 +172,41 @@ agent.py配置:
 ```
 參考連結1
 ```
+## 配置多台虛擬機
+```bash
+安裝MySQL(參考連結4)
+$ sudo apt-get update
+$ sudo apt-get install python-mysqldb
+$ sudo spt-get install mysql-server
+$ sudo mysql_secure_installation(皆選擇yes，密碼強度設定為LOW)
+$ sudo mysql -u root -p(第一次要加sudo)
+#建立給cuckoo用的資料庫
+mysql>create database cuckoo;
+#登入設定
+mysql>select user,host,plugin from mysql.user;
+mysql>alter user 'root'@'localhost' identified with mysql_native_password by '密碼';
+mysql>flush privileges;
+
+#更改cuckoo.conf
+[database]
+connection = mysql://root:密碼@localhost/cuckoo
+
+#更改virtualbox.conf
+[virtualbox]
+machines = sample,cuckoo2,cuckoo3(依想設定的數量而定，名稱也可以自行設定，只需對應好標籤即可)
+
+EX:
+[sample]
+label = 虛擬機名稱(例:Analysis_winxp)
+platform = windows
+ip = 192.168.56.101(自行設定)
+snapshot = 快照名稱
+
+```
 ## 參考文件
 [Cuckoo Installation](https://0x90e.github.io/cuckoo-installation/)
-
 [官方文件](https://cuckoo.sh/docs/installation/index.html)
-
 [Cuckoo SandBox V2.0.6安裝指南](https://www.itread01.com/content/1542834127.html)
+[MySQL安裝與設定](https://blog.csdn.net/weixx3/article/details/80782479)
+
 
