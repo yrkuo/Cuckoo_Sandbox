@@ -177,7 +177,7 @@ agent.py配置:
 安裝MySQL(參考連結4)
 $ sudo apt-get update
 $ sudo apt-get install python-mysqldb
-$ sudo spt-get install mysql-server
+$ sudo apt-get install mysql-server
 $ sudo mysql_secure_installation(皆選擇yes，密碼強度設定為LOW)
 $ sudo mysql -u root -p(第一次要加sudo)
 #建立給cuckoo用的資料庫
