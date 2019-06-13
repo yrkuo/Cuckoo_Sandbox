@@ -34,7 +34,7 @@ $ ./configure --enable-magic
 ```
 ## install tcpdump
 ```bash
-$ sudo apt-get install tcpdumpd
+$ sudo apt-get install tcpdump
 # 權限設定
 $ sudo setcap cap_net_raw,cap_net_admin=eip /usr/sbin/tcpdump
 # 確認設定
