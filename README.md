@@ -46,7 +46,7 @@ $ sudo apt-get install libcap2-bin
 ## install Pydeep
 ```bash
 $ wget http://sourceforge.net/projects/ssdeep/files/ssdeep-2.13/ssdeep-2.13.tar.gz/download
-$ mv dowonload download.tar.gz
+$ mv download download.tar.gz
 $ tar -zxf download.tar.gz
 $ cd ssdeep-2.13
 $ ./configure
