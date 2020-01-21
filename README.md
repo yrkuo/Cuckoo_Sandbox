@@ -72,23 +72,20 @@ Requires:
 ## install Volatility
 ```bash
 # 安裝前置套件
-$ sudo pip install openpyxl
-$ sudo pip install ujson
-$ sudo pip install pycrypto
-$ sudo pip install distorm3
-$ sudo pip install pytz
+$ sudo pip install openpyxl ujson pycrypto distorm3 pytz
 
 $ git clone https://github.com/volatilityfoundation/volatility.git
 $ cd volatility
 $ python setup.py build
-$ python setup.py install
+$ sudo python setup.py install
 # 確認安裝無誤
 $ python vol.py -h
 ```
 ## install M2Crypto
 ```bash
-$ sudo pip install m2crypto==0.24.0(官方)
-$ sudo apt-get install python-m2crypto(自身)
+$ sudo apt-get install swig
+$ sudo apt-get install libssl1.0-dev
+$ sudo pip install m2crypto==0.24.0
 ```
 ## Network Configuration
 ```bash
